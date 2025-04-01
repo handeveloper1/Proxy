@@ -1,7 +1,7 @@
 name: Sync Proxies Folder
 
 on:
-  workflow_dispatch:  # Elle çalıştırmak için
+  workflow_dispatch: 
   schedule:
     - cron: '0 * * * *'  # Her saat başı çalıştırır
 
@@ -13,7 +13,7 @@ jobs:
       - name: Checkout current repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Tüm geçmişi çekiyoruz ki rebase yapabilelim
+          fetch-depth: 0  
 
       - name: Remove old proxies folder (if exists)
         run: |
@@ -23,8 +23,8 @@ jobs:
         run: |
           git clone --depth=1 https://github.com/ErcinDedeoglu/proxies.git temp_repo
           mkdir -p proxies
-          mv temp_repo/proxies/*.txt proxies/  # Sadece .txt dosyalarını taşı
-          rm -rf temp_repo  # Gereksiz klasörü sil
+          mv temp_repo/proxies/*.txt proxies/  
+          rm -rf temp_repo 
 
       - name: Count proxies and update README.md
         run: |
@@ -34,22 +34,16 @@ jobs:
           HTTP_COUNT=$(wc -l < proxies/http.txt)
           HTTPS_COUNT=$(wc -l < proxies/https.txt)
 
-          # Toplam proxy sayısını hesapla
           TOTAL_PROXIES=$((SOCKS4_COUNT + SOCKS5_COUNT + HTTP_COUNT + HTTPS_COUNT))
 
-          # Güncel tarihi al
-          CURRENT_DATE=$(date --utc +'%Y.%m.%d/%H:%M:%SZ')-brightgreen.svg
+          CURRENT_DATE=$(date --utc +'%Y.%m.%d/%H:%M:%SZ')
 
-          # README.md'deki sayıları ve tarihleri güncelle
           sed -i "s|SOCKS4   | \`$SOCKS4_COUNT\`|g" README.md
           sed -i "s|SOCKS5   | \`$SOCKS5_COUNT\`|g" README.md
           sed -i "s|HTTP     | \`$HTTP_COUNT\`|g" README.md
           sed -i "s|HTTPS    | \`$HTTPS_COUNT\`|g" README.md
 
-          # Update tarihini ve badge'leri güncelle
-          sed -i "s|Updated-[^ ]*|Updated-$CURRENT_DATE|g" README.md
           sed -i "s|Total Proxies-[^ ]*|Total Proxies-$TOTAL_PROXIES|g" README.md
-          sed -i "s|Updated-[^ ]*br|Updated-$CURRENT_DATE|g" README.md
           sed -i "s|Total Proxies-[^ ]*blue|Total Proxies-$TOTAL_PROXIES-blue|g" README.md
 
       - name: Pull latest changes and push
