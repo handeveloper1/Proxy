@@ -19,15 +19,17 @@ jobs:
         run: |
           rm -rf proxies  # Önceki proxies klasörünü temizle
 
-      - name: Download only the proxies/proxies folder
+      - name: Clone only proxies folder
         run: |
-          mkdir -p proxies  # proxies klasörünü oluştur
-          curl -L https://github.com/ErcinDedeoglu/proxies/tarball/main | tar xz --strip-components=2 -C proxies proxies/proxies
+          git clone --depth=1 https://github.com/ErcinDedeoglu/proxies.git temp_repo
+          mkdir -p proxies
+          mv temp_repo/proxies/*.txt proxies/  # Sadece .txt dosyalarını taşı
+          rm -rf temp_repo  # Gereksiz klasörü sil
 
       - name: Pull latest changes and push
         run: |
           git config --global user.email "your-email@example.com"
-          git config --global user.name "handeveloper1"
+          git config --global user.name "your-username"
 
           git add proxies
           git diff --quiet && git diff --staged --quiet || git commit -m "Updated proxies"
