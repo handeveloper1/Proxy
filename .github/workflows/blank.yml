@@ -44,7 +44,7 @@ jobs:
           sed -i "s|HTTPS    | \`$HTTPS_COUNT\`|g" README.md
 
           # Update tarihini güncelle
-          sed -i "s|Updated-[^ ]*|Updated-$CURRENT_DATE|g" README.md
+          sed -i "s|Updated-[^ ]*|Updated-$CURRENT_DATE-brightgreen.svg|g" README.md
 
           # Toplam proxy sayısını güncelle
           sed -i "s|Total Proxies-[^ ]*|Total Proxies-$TOTAL_PROXIES|g" README.md
