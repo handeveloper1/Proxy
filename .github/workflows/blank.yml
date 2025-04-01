@@ -26,13 +26,33 @@ jobs:
           mv temp_repo/proxies/*.txt proxies/  # Sadece .txt dosyalarını taşı
           rm -rf temp_repo  # Gereksiz klasörü sil
 
+      - name: Count proxies and update README.md
+        run: |
+          # Sayıları al
+          SOCKS4_COUNT=$(wc -l < proxies/socks4.txt)
+          SOCKS5_COUNT=$(wc -l < proxies/socks5.txt)
+          HTTP_COUNT=$(wc -l < proxies/http.txt)
+          HTTPS_COUNT=$(wc -l < proxies/https.txt)
+
+          # README.md'yi güncelle
+          sed -i "s/\([0-9]*\) proxies/socks4.txt/\1/g" README.md
+          sed -i "s/\([0-9]*\) proxies/socks5.txt/\1/g" README.md
+          sed -i "s/\([0-9]*\) proxies/http.txt/\1/g" README.md
+          sed -i "s/\([0-9]*\) proxies/https.txt/\1/g" README.md
+
+          # README.md'deki proxy sayılarıyla güncelleme
+          sed -i "s/`[0-9]*`/`$SOCKS4_COUNT`/" README.md
+          sed -i "s/`[0-9]*`/`$SOCKS5_COUNT`/" README.md
+          sed -i "s/`[0-9]*`/`$HTTP_COUNT`/" README.md
+          sed -i "s/`[0-9]*`/`$HTTPS_COUNT`/" README.md
+
       - name: Pull latest changes and push
         run: |
           git config --global user.email "your-email@example.com"
-          git config --global user.name "your-username"
+          git config --global user.name "handeveloper1"
 
-          git add proxies
-          git diff --quiet && git diff --staged --quiet || git commit -m "Updated proxies"
+          git add README.md proxies
+          git diff --quiet && git diff --staged --quiet || git commit -m "Updated proxies and README.md"
 
           # Güncellemeleri çek ve rebase yap
           git pull --rebase origin main || git rebase --skip
