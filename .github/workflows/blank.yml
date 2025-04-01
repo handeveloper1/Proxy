@@ -35,10 +35,10 @@ jobs:
           HTTPS_COUNT=$(wc -l < proxies/https.txt)
 
           # README.md'deki sayıları güncellemek için sed komutunu doğru yazalım
-          sed -i "s|[`][0-9]*[`]\(.*\)SOCKS4|[$SOCKS4_COUNT]\1SOCKS4|" README.md
-          sed -i "s|[`][0-9]*[`]\(.*\)SOCKS5|[$SOCKS5_COUNT]\1SOCKS5|" README.md
-          sed -i "s|[`][0-9]*[`]\(.*\)HTTP|[$HTTP_COUNT]\1HTTP|" README.md
-          sed -i "s|[`][0-9]*[`]\(.*\)HTTPS|[$HTTPS_COUNT]\1HTTPS|" README.md
+          sed -i "s|SOCKS4   | \`$SOCKS4_COUNT\`|g" README.md
+          sed -i "s|SOCKS5   | \`$SOCKS5_COUNT\`|g" README.md
+          sed -i "s|HTTP     | \`$HTTP_COUNT\`|g" README.md
+          sed -i "s|HTTPS    | \`$HTTPS_COUNT\`|g" README.md
 
       - name: Pull latest changes and push
         run: |
@@ -50,3 +50,6 @@ jobs:
 
           # Güncellemeleri çek ve rebase yap
           git pull --rebase origin main || git rebase --skip
+
+          # Push yap
+          git push origin main
