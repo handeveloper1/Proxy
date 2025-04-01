@@ -48,7 +48,7 @@ jobs:
 
       - name: Pull latest changes and push
         run: |
-          git config --global user.email "your-email@example.com"
+          git config --global user.email "oguzhanyazman@gmail.com"
           git config --global user.name "handeveloper1"
 
           git add README.md proxies
