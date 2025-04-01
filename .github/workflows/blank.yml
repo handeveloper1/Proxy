@@ -1,0 +1,39 @@
+name: Sync Proxies Folder
+
+on:
+  workflow_dispatch:  # Elle çalıştırmak için
+  schedule:
+    - cron: '0 * * * *'  # Her saat başı çalıştırır
+
+jobs:
+  sync_proxies:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout current repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Tüm geçmişi çekiyoruz ki rebase yapabilelim
+
+      - name: Remove old proxies folder (if exists)
+        run: |
+          rm -rf proxies  # Önceki proxies klasörünü temizle
+
+      - name: Download only proxies folder
+        run: |
+          mkdir -p proxies  # proxies klasörünü oluştur
+          curl -L https://github.com/ErcinDedeoglu/proxies/tarball/main | tar xz --strip-components=1 -C proxies
+
+      - name: Pull latest changes and push
+        run: |
+          git config --global user.email "oguzhanyazman@gmail.com"
+          git config --global user.name "HANDEVELOPER1"
+
+          git add proxies
+          git diff --quiet && git diff --staged --quiet || git commit -m "Updated proxies"
+
+          # Güncellemeleri çek ve rebase yap
+          git pull --rebase origin main || git rebase --skip
+
+          # Push yap
+          git push origin main
