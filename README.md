@@ -5,7 +5,7 @@
 A curated collection of fresh public proxies, automatically updated every hour
 
 [![Update Proxies](https://github.com/handeveloper1/Proxy/actions/workflows/blank.yml/badge.svg)](https://github.com/handeveloper1/Proxy/actions/workflows/blank.yml)
-[![Last Update](https://img.shields.io/badge/Updated-2025.04.01/15:02:36Z-brightgreen.svg)](#)
+[![Last Update](https://img.shields.io/badge/Updated-2025.01.01/15:02:36Z-brightgreen.svg)](#)
 [![Total Proxies](https://img.shields.io/badge/Total%20Proxies-46177-blue.svg)](#)
 
 </div>
