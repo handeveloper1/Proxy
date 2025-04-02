@@ -36,13 +36,17 @@ jobs:
           mkdir -p "Proxy-hendrikbgr"
           curl -o "Proxy-hendrikbgr/proxy_list.txt" -L "https://raw.githubusercontent.com/hendrikbgr/Free-Proxy-Repo/master/proxy_list.txt"
 
+      - name: Append update timestamp to README.md
+        run: |
+          echo "\nLast updated: $(date --utc +'%Y-%m-%d %H:%M:%SZ')" >> README.md
+
       - name: Pull latest changes and push
         run: |
-          git add README.md "Proxies-Ercin" "Proxy-hendrikbgr"
+          git add "Proxies-Ercin" "Proxy-hendrikbgr" README.md
           if git diff --cached --quiet; then
             echo "No changes to commit."
             exit 0
           fi
-          git commit -m "Updated proxies and README.md"
+          git commit -m "Updated proxies and timestamp in README.md"
           git pull --rebase origin main || git rebase --skip
           git push origin main
