@@ -36,26 +36,6 @@ jobs:
           mkdir -p "Proxy-hendrikbgr"
           curl -o "Proxy-hendrikbgr/proxy_list.txt" -L "https://raw.githubusercontent.com/hendrikbgr/Free-Proxy-Repo/master/proxy_list.txt"
 
-      - name: Count proxies and update README.md
-        run: |
-          SOCKS4_COUNT=$(wc -l < "Proxies-Ercin/socks4.txt")
-          SOCKS5_COUNT=$(wc -l < "Proxies-Ercin/socks5.txt")
-          HTTP_COUNT=$(wc -l < "Proxies-Ercin/http.txt")
-          HTTPS_COUNT=$(wc -l < "Proxies-Ercin/https.txt")
-          HENDRIK_COUNT=$(wc -l < "Proxy-hendrikbgr/proxy_list.txt")
-
-          TOTAL_PROXIES=$((SOCKS4_COUNT + SOCKS5_COUNT + HTTP_COUNT + HTTPS_COUNT + HENDRIK_COUNT))
-          CURRENT_DATE=$(date --utc +'%Y.%m.%d/%H:%M:%SZ')
-
-          sed -i "s|\(SOCKS4\) *[0-9]*|\1 \`$SOCKS4_COUNT\`|g" README.md
-          sed -i "s|\(SOCKS5\) *[0-9]*|\1 \`$SOCKS5_COUNT\`|g" README.md
-          sed -i "s|\(HTTP\) *[0-9]*|\1 \`$HTTP_COUNT\`|g" README.md
-          sed -i "s|\(HTTPS\) *[0-9]*|\1 \`$HTTPS_COUNT\`|g" README.md
-          sed -i "s|\(Hendrik\) *[0-9]*|\1 \`$HENDRIK_COUNT\`|g" README.md
-
-          sed -i "s|Total Proxies-[0-9]*|Total Proxies-$TOTAL_PROXIES|g" README.md
-          sed -i "s|Total Proxies-[0-9]*-blue|Total Proxies-$TOTAL_PROXIES-blue|g" README.md
-
       - name: Pull latest changes and push
         run: |
           git add README.md "Proxies-Ercin" "Proxy-hendrikbgr"
