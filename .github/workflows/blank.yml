@@ -17,21 +17,21 @@ jobs:
 
       - name: Remove old proxies folder (if exists)
         run: |
-          rm -rf "Proxies(EveryHourUpdate)"
+          rm -rf "Proxies-Ercin"
 
       - name: Clone only proxies folder
         run: |
           git clone --depth=1 https://github.com/ErcinDedeoglu/proxies.git temp_repo
-          mkdir -p "Proxies(EveryHourUpdate)"
-          mv temp_repo/proxies/*.txt "Proxies(EveryHourUpdate)"
+          mkdir -p "Proxies-Ercin"
+          mv temp_repo/proxies/*.txt "Proxies-Ercin"
           rm -rf temp_repo 
 
       - name: Count proxies and update README.md
         run: |
-          SOCKS4_COUNT=$(wc -l < "Proxies(EveryHourUpdate)/socks4.txt")
-          SOCKS5_COUNT=$(wc -l < "Proxies(EveryHourUpdate)/socks5.txt")
-          HTTP_COUNT=$(wc -l < "Proxies(EveryHourUpdate)/http.txt")
-          HTTPS_COUNT=$(wc -l < "Proxies(EveryHourUpdate)/https.txt")
+          SOCKS4_COUNT=$(wc -l < "Proxies-Ercin/socks4.txt")
+          SOCKS5_COUNT=$(wc -l < "Proxies-Ercin/socks5.txt")
+          HTTP_COUNT=$(wc -l < "Proxies-Ercin/http.txt")
+          HTTPS_COUNT=$(wc -l < "Proxies-Ercin/https.txt")
 
           TOTAL_PROXIES=$((SOCKS4_COUNT + SOCKS5_COUNT + HTTP_COUNT + HTTPS_COUNT))
           CURRENT_DATE=$(date --utc +'%Y.%m.%d/%H:%M:%SZ')
@@ -48,7 +48,7 @@ jobs:
         run: |
           git config --global user.name "handeveloper1"
 
-          git add README.md "Proxies(EveryHourUpdate)"
+          git add README.md "Proxies-Ercin"
           if git diff --cached --quiet; then
             echo "No changes to commit."
             exit 0
