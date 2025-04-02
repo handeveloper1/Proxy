@@ -12,12 +12,3 @@ A curated collection of fresh public proxies, automatically updated **every hour
 
 
 </div>
-
-## 📊 Proxy Statistics
-| Protocol | Working Proxies |
-|----------|----------------|
-|  `SOCKS4 `8323``| [`8323`](https://raw.githubusercontent.com/handeveloper1/Proxy/refs/heads/main/proxies/socks4.txt) |
-|  `SOCKS5 `6712``| [`6712`](https://raw.githubusercontent.com/handeveloper1/Proxy/refs/heads/main/proxies/socks5.txt) |
-|  `HTTP `27631``| [`27631`](https://raw.githubusercontent.com/handeveloper1/Proxy/refs/heads/main/proxies/http.txt) |
-|  `HTTP `27631`S`| [`27631`](https://raw.githubusercontent.com/handeveloper1/Proxy/refs/heads/main/proxies/https.txt) |
-
