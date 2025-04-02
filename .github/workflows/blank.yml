@@ -17,43 +17,45 @@ jobs:
 
       - name: Remove old proxies folder (if exists)
         run: |
-          rm -rf proxies  # Önceki proxies klasörünü temizle
+          rm -rf "Proxies(EveryHourUpdate)"
 
       - name: Clone only proxies folder
         run: |
           git clone --depth=1 https://github.com/ErcinDedeoglu/proxies.git temp_repo
-          mkdir -p proxies
-          mv temp_repo/proxies/*.txt proxies/  
+          mkdir -p "Proxies(EveryHourUpdate)"
+          mv temp_repo/proxies/*.txt "Proxies(EveryHourUpdate)"
           rm -rf temp_repo 
 
       - name: Count proxies and update README.md
         run: |
-          # Sayıları al
-          SOCKS4_COUNT=$(wc -l < proxies/socks4.txt)
-          SOCKS5_COUNT=$(wc -l < proxies/socks5.txt)
-          HTTP_COUNT=$(wc -l < proxies/http.txt)
-          HTTPS_COUNT=$(wc -l < proxies/https.txt)
+          SOCKS4_COUNT=$(wc -l < "Proxies(EveryHourUpdate)/socks4.txt")
+          SOCKS5_COUNT=$(wc -l < "Proxies(EveryHourUpdate)/socks5.txt")
+          HTTP_COUNT=$(wc -l < "Proxies(EveryHourUpdate)/http.txt")
+          HTTPS_COUNT=$(wc -l < "Proxies(EveryHourUpdate)/https.txt")
 
           TOTAL_PROXIES=$((SOCKS4_COUNT + SOCKS5_COUNT + HTTP_COUNT + HTTPS_COUNT))
-
           CURRENT_DATE=$(date --utc +'%Y.%m.%d/%H:%M:%SZ')
 
-          sed -i "s|SOCKS4   | \`$SOCKS4_COUNT\`|g" README.md
-          sed -i "s|SOCKS5   | \`$SOCKS5_COUNT\`|g" README.md
-          sed -i "s|HTTP     | \`$HTTP_COUNT\`|g" README.md
-          sed -i "s|HTTPS    | \`$HTTPS_COUNT\`|g" README.md
+          sed -i "s|\(SOCKS4\) *[0-9]*|\1 \`$SOCKS4_COUNT\`|g" README.md
+          sed -i "s|\(SOCKS5\) *[0-9]*|\1 \`$SOCKS5_COUNT\`|g" README.md
+          sed -i "s|\(HTTP\) *[0-9]*|\1 \`$HTTP_COUNT\`|g" README.md
+          sed -i "s|\(HTTPS\) *[0-9]*|\1 \`$HTTPS_COUNT\`|g" README.md
 
-          sed -i "s|Total Proxies-[^ ]*|Total Proxies-$TOTAL_PROXIES|g" README.md
-          sed -i "s|Total Proxies-[^ ]*blue|Total Proxies-$TOTAL_PROXIES-blue|g" README.md
+          sed -i "s|Total Proxies-[0-9]*|Total Proxies-$TOTAL_PROXIES|g" README.md
+          sed -i "s|Total Proxies-[0-9]*-blue|Total Proxies-$TOTAL_PROXIES-blue|g" README.md
 
       - name: Pull latest changes and push
         run: |
-          git config --global user.email "oguzhanyazman@gmail.com"
           git config --global user.name "handeveloper1"
 
-          git add README.md proxies
-          git diff --quiet && git diff --staged --quiet || git commit -m "Updated proxies and README.md"
+          git add README.md "Proxies(EveryHourUpdate)"
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
 
+          git commit -m "Updated proxies and README.md"
+          
           # Güncellemeleri çek ve rebase yap
           git pull --rebase origin main || git rebase --skip
 
