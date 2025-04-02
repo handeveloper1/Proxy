@@ -15,6 +15,11 @@ jobs:
         with:
           fetch-depth: 0  
 
+      - name: Configure Git
+        run: |
+          git config --global user.name "handeveloper1"
+          git config --global user.email "oguzhanyazman@gmail.com"
+
       - name: Remove old proxies folders (if exist)
         run: |
           rm -rf "Proxies-Ercin" "Proxy-hendrikbgr"
@@ -53,7 +58,6 @@ jobs:
 
       - name: Pull latest changes and push
         run: |
-          git config --global user.name "handeveloper1"
           git add README.md "Proxies-Ercin" "Proxy-hendrikbgr"
           if git diff --cached --quiet; then
             echo "No changes to commit."
