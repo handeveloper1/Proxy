@@ -58,7 +58,8 @@ jobs:
 
       - name: Append update timestamp to README.md
         run: |
-          echo "\nLast updated (UTC+0): $(date --utc +'%Y-%m-%d %H:%M:%S')" >> README.md
+          echo "\nLast updated: $(date --utc +'%Y-%m-%d %H:%M:%S')" >> README.md
+          echo "Last updated (UTC+0): $(date --utc +'%Y-%m-%d %H:%M:%S')" >> README.md
           echo "Last updated (UTC+3): $(date --date='3 hours' +'%Y-%m-%d %H:%M:%S')" >> README.md
 
       - name: Pull latest changes and push
@@ -68,6 +69,6 @@ jobs:
             echo "No changes to commit."
             exit 0
           fi
-          git commit -m "Updated proxies and timestamp in README.md"
+          git commit -m "Updated proxies and timestamp in README.md (UTC+3: $(date --date='3 hours' +'%Y-%m-%d %H:%M:%S'))"
           git pull --rebase origin main || git rebase --skip
           git push origin main
