@@ -15,3 +15,6 @@ A curated collection of fresh public proxies, automatically updated **every hour
 \nLast updated: 2025-04-02 19:56:03Z
 \nLast updated (UTC+0): 2025-04-02 20:02:15
 Last updated (UTC+3): 2025-04-02 23:02:15
+\nLast updated: 2025-04-02 20:05:52
+Last updated (UTC+0): 2025-04-02 20:05:52
+Last updated (UTC+3): 2025-04-02 23:05:52
