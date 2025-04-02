@@ -22,7 +22,7 @@ jobs:
 
       - name: Remove old proxies folders (if exist)
         run: |
-          rm -rf "Proxies-Ercin" "Proxy-hendrikbgr"
+          rm -rf "Proxies-Ercin" "Proxy-hendrikbgr" "Proxy-Zaeem20" "Proxy-Tsprnay" "Proxy-gitrecon1455" "Proxy-KangProxy"
 
       - name: Clone only proxies folder
         run: |
@@ -36,13 +36,34 @@ jobs:
           mkdir -p "Proxy-hendrikbgr"
           curl -o "Proxy-hendrikbgr/proxy_list.txt" -L "https://raw.githubusercontent.com/hendrikbgr/Free-Proxy-Repo/master/proxy_list.txt"
 
+      - name: Download proxies from Zaeem20 repo
+        run: |
+          mkdir -p "Proxy-Zaeem20"
+          curl -o "Proxy-Zaeem20/https.txt" -L "https://raw.githubusercontent.com/Zaeem20/FREE_PROXIES_LIST/refs/heads/master/https.txt"
+
+      - name: Download proxies from Tsprnay repo
+        run: |
+          mkdir -p "Proxy-Tsprnay"
+          curl -o "Proxy-Tsprnay/https.txt" -L "https://raw.githubusercontent.com/Tsprnay/Proxy-lists/refs/heads/master/proxies/https.txt"
+
+      - name: Download proxies from gitrecon1455 repo
+        run: |
+          mkdir -p "Proxy-gitrecon1455"
+          curl -o "Proxy-gitrecon1455/proxies.txt" -L "https://raw.githubusercontent.com/gitrecon1455/ProxyScraper/refs/heads/main/proxies.txt"
+
+      - name: Download proxies from KangProxy repo
+        run: |
+          mkdir -p "Proxy-KangProxy"
+          curl -o "Proxy-KangProxy/https.txt" -L "https://raw.githubusercontent.com/officialputuid/KangProxy/refs/heads/KangProxy/https/https.txt"
+
       - name: Append update timestamp to README.md
         run: |
-          echo "\nLast updated: $(date --utc +'%Y-%m-%d %H:%M:%SZ')" >> README.md
+          echo "\nLast updated (UTC+0): $(date --utc +'%Y-%m-%d %H:%M:%S')" >> README.md
+          echo "Last updated (UTC+3): $(date --date='3 hours' +'%Y-%m-%d %H:%M:%S')" >> README.md
 
       - name: Pull latest changes and push
         run: |
-          git add "Proxies-Ercin" "Proxy-hendrikbgr" README.md
+          git add "Proxies-Ercin" "Proxy-hendrikbgr" "Proxy-Zaeem20" "Proxy-Tsprnay" "Proxy-gitrecon1455" "Proxy-KangProxy" README.md
           if git diff --cached --quiet; then
             echo "No changes to commit."
             exit 0
