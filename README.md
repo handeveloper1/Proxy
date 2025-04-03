@@ -10,13 +10,13 @@ A curated collection of fresh public proxies, automatically updated **every hour
 ![GitHub stars](https://img.shields.io/github/stars/handeveloper1/Proxy?style=social)
 ![GitHub last commit](https://img.shields.io/github/last-commit/handeveloper1/Proxy?color=green)
 
-
-</div>
-
-
 Proxies-Ercin             //https, http, socks4, socks5
 Proxy-KangProxy          //https, http, socks4, socks5
 Proxy-Tsprnay           //https
 Proxy-Zaeem20          //https
 Proxy-gitrecon1455    //https
 Proxy-hedrikbgr      //https
+
+</div>
+
+
