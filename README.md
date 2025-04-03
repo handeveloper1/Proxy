@@ -12,3 +12,11 @@ A curated collection of fresh public proxies, automatically updated **every hour
 
 
 </div>
+
+
+Proxies-Ercin             //https, http, socks4, socks5
+Proxy-KangProxy          //https, http, socks4, socks5
+Proxy-Tsprnay           //https
+Proxy-Zaeem20          //https
+Proxy-gitrecon1455    //https
+Proxy-hedrikbgr      //https
