@@ -10,13 +10,18 @@ A curated collection of fresh public proxies, automatically updated **every hour
 ![GitHub stars](https://img.shields.io/github/stars/handeveloper1/Proxy?style=social)
 ![GitHub last commit](https://img.shields.io/github/last-commit/handeveloper1/Proxy?color=green)
 
-Proxies-Ercin             //https, http, socks4, socks5
-Proxy-KangProxy          //https, http, socks4, socks5
-Proxy-Tsprnay           //https
-Proxy-Zaeem20          //https
-Proxy-gitrecon1455    //https
-Proxy-hedrikbgr      //https
+
 
 </div>
 
 
+## Proxy List
+
+| Proxy Provider      | Supported Protocols             |
+|---------------------|--------------------------------|
+| **Proxies-Ercin**   | HTTPS, HTTP, SOCKS4, SOCKS5   |
+| **Proxy-KangProxy** | HTTPS, HTTP, SOCKS4, SOCKS5   |
+| **Proxy-Tsprnay**   | HTTPS                          |
+| **Proxy-Zaeem20**   | HTTPS                          |
+| **Proxy-gitrecon1455** | HTTPS                     |
+| **Proxy-hedrikbgr** | HTTPS                          |
