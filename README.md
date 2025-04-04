@@ -11,7 +11,6 @@ A curated collection of fresh public proxies, automatically updated **every hour
 ![GitHub last commit](https://img.shields.io/github/last-commit/handeveloper1/Proxy?color=green)
 
 
-
 </div>
 
 
