@@ -10,7 +10,6 @@ A curated collection of fresh public proxies, automatically updated **every hour
 ![GitHub stars](https://img.shields.io/github/stars/handeveloper1/Proxy?style=social)
 ![GitHub last commit](https://img.shields.io/github/last-commit/handeveloper1/Proxy?color=green)
 
-
 </div>
 
 
